@@ -46,5 +46,15 @@ public class TestDorisExceptionConverter {
     Assertions.assertEquals(
         DorisExceptionConverter.CODE_NO_SUCH_TABLE,
         DorisExceptionConverter.getErrorCodeFromMessage(msg));
+
+    msg = "errCode = 2, detailMessage = Error in list of partitions to 'test_partition_name'";
+    Assertions.assertEquals(
+        DorisExceptionConverter.CODE_DELETE_NON_EXISTING_PARTITION,
+        DorisExceptionConverter.getErrorCodeFromMessage(msg));
+
+    msg = "errCode = 2, detailMessage = Duplicate partition name 'duplicate_partition_name'";
+    Assertions.assertEquals(
+        DorisExceptionConverter.CODE_PARTITION_ALREADY_EXISTS,
+        DorisExceptionConverter.getErrorCodeFromMessage(msg));
   }
 }
